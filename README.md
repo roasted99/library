@@ -1,0 +1,1 @@
+This is a library build with object prototype in vanilla JavaScript.
