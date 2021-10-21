@@ -74,6 +74,23 @@ td {
     padding: 10px;
 }
 
+
+tbody {
+    counter-reset: row;
+    /* Set the row counter to 0 */
+  }
+  
+tbody tr::before {
+    padding-top: 18px;
+    padding-left: 15px;
+    height: 1.5rem;
+    display: table-cell;
+    counter-increment: row;
+    /* Increment the row counter*/
+    content: counter(row) ".";
+    /* Display the row */
+}
+
 .title {
     width: 3fr;
 }

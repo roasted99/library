@@ -31,7 +31,6 @@ function addBookToLibrary(book) {
     const list = document.querySelector('#book-list')
     const row = document.createElement('tr')
     row.innerHTML = `
-    <td>1.</td>
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.pages}</td>
