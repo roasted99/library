@@ -22,7 +22,7 @@ span {
     color: rgb(21, 102, 156);
 }
 
-.book-form {
+#book-form {
     display: flex;
     flex-direction: column;
     font-size: 1rem;
@@ -75,9 +75,20 @@ td {
     width: 3fr;
 }
 
+.book-status{
+   background-color: rgb(214, 190, 157);
+    height: 2rem;
+    width: 5rem;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+}
+
 .delete{
     background-color: red;
     height: 1.5rem;
     width: 1.5rem;
     color: white;
+    text-align: center;
+    border: none;
 }
