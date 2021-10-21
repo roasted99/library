@@ -22,7 +22,7 @@ function Book(title, author, pages, isbn) {
 }
 
 function displayBook() {
-    const books = myLibrary;
+    const books = getBooks();
     books.forEach(book => addBookToLibrary(book));
 }
 
@@ -67,8 +67,45 @@ function clearField() {
     document.querySelector('#isbn').value = '';
 }
 
+//local storage
+
+function getBooks(){
+    let books;
+    if (localStorage.getItem('books') === null) {
+        books = [];
+    } else {
+        books = JSON.parse(localStorage.getItem('books'));
+    }
+    return books
+};
+
+function addBooks(book){
+    const books = getBooks();
+    books.push(book);
+    localStorage.setItem('books', JSON.stringify(books));
+};
+
+function removeBook(isbn) {
+    const books = getBooks();
+    books.forEach((book, index) => {
+        if (book.isbn === isbn) {
+            books.splice(index, 1)
+    }});
+    localStorage.setItem('books', JSON.stringify(books))
+};
+
 //Event to display book
 document.addEventListener('DOMContentLoaded', displayBook());
+
+//change status
+const changeStatus = document.querySelectorAll('.book-status');
+changeStatus.forEach(change => change.addEventListener('click', (e) => {
+    if (e.target.value === 'Read') {
+        e.target.value = 'Not Read';
+    } else {
+        e.target.value = 'Read';
+    }
+}));
 
 //Event to add book
 document.querySelector('#book-form').addEventListener('submit', e => {
@@ -86,26 +123,26 @@ document.querySelector('#book-form').addEventListener('submit', e => {
         const book = new Book(title, author, pages, isbn);
 
         addBookToLibrary(book);
+
+        //add book to storage
+        addBooks(book);
     
         showAlert('Book Added', 'success');
 
         clearField();
     }
     
-})
+});
 
 //delete book
 document.querySelector('#book-list').addEventListener('click', e => {
+    //remove book
     deleteBook(e.target);
+
+    //remove book from storage 
+    removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+
     showAlert('Book Removed', 'success');
 })
 
-//change status
-const changeStatus = document.querySelectorAll('.book-status');
-changeStatus.forEach(change => change.addEventListener('click', (e) => {
-    if (e.target.value === 'Read') {
-        e.target.value = 'Not Read';
-    } else {
-        e.target.value = 'Read';
-    }
-}));
+
