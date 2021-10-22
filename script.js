@@ -1,18 +1,3 @@
-let myLibrary = [
-    {
-        title: '1984',
-        author: 'George Orwell',
-        pages: 298,
-        isbn: 9780451524935
-    },
-    {
-        title: 'The Alchemist',
-        author: 'Paul Coelho',
-        pages: 208,
-        isbn: 125132351351
-    }
-];
-
 //constructor
 function Book(title, author, pages, isbn) {
     this.title = title
